@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Regulamento - Bolão Contabilidade Promissão 2026</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsivo -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        header {
+            background-color: #006400; /* verde escuro */
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+        }
+        section {
+            background: white;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #006400; /* verde escuro */
+        }
+        ul {
+            list-style-type: square;
+            padding-left: 20px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+            color: #555;
+        }
+        /* Responsividade para celular */
+        @media (max-width: 600px) {
+            body {
+                margin: 10px;
+                font-size: 14px;
+            }
+            header {
+                font-size: 1.2em;
+                padding: 15px;
+            }
+            section {
+                padding: 15px;
+            }
+            h2 {
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Regulamento - Bolão 2026</h1>
+    </header>
+
+    <section>
+        <h2>Prazo e Valor</h2>
+        <ul>
+            <li>Preço do bolão R$ 50,00, 1 fase R$ 20,00 e 2 fase 30,00.</li>
+            <li>Serão 3 ganhadores na primeira fase sendo : 1 posição 55%, 2 posição 30% e 3 posição 15% do valor arrecadado, mesmo critério segue na segunda fase.</li>
+            <li>Palpite até o horário de início.</li>
+            <li>Quando a partida começa, a página estará fora do ar.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Mata-mata</h2>
+        <ul>
+            <li>Prorrogação entra no placar.</li>
+            <li>Apenas gols da disputa de pênaltis ficam fora da pontuação.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Regra</h2>
+        <ul>
+            <li>Cada jogo aplica os critérios de gols e vitória.</li>
+            <li>Sendo 2 pontos por vitória e 4 para o placar acertado, acertando a classificação respectivamente das seleções de 1 a 4 serão 5 pontos.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Ausência</h2>
+        <ul>
+            <li>Sem palpite, sem ponto.</li>
+            <li>Jogos não preenchidos até o prazo rendem 0 pontos automaticamente.</li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 - Bolão Oficial</p>
+    </footer>
+</body>
+</html>
