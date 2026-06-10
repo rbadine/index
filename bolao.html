@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Bolão Copa 2026 Contabilidade</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsivo -->
+  <style>
+    body { font-family: Arial, sans-serif; margin: 10px; background: #f4f4f4; }
+    h1 { text-align: center; color: #006400; font-size: 1.6em; }
+    .tabela-container { overflow-x: auto; }
+    table { border-collapse: collapse; width: 100%; background: #fff; font-size: 0.9em; }
+    th, td { border: 1px solid #ccc; padding: 6px; text-align: center; }
+    input[type="number"] { width: 50px; text-align: center; font-size: 1em; }
+    input[type="text"] { width: 100%; max-width: 250px; padding: 6px; font-size: 1em; }
+    button {
+      margin: 10px 5px;
+      padding: 12px;
+      font-size: 1em;
+      background-color: #006400;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover { background-color: #228B22; }
+    @media (max-width: 600px) {
+      h1 { font-size: 1.3em; }
+      table { font-size: 0.8em; }
+      input[type="number"] { width: 40px; font-size: 0.9em; }
+      button { width: 100%; font-size: 0.95em; }
+    }
+  </style>
+  <!-- Bibliotecas externas -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <h1>Bolão Copa do Mundo 2026 - Primeira Fase</h1>
+
+  <label>Nome do participante: <input type="text" id="nome"></label>
+
+  <div class="tabela-container">
+    <table id="tabela">
+      <tr>
+        <th>Data</th>
+        <th>Confronto</th>
+      </tr>
+      <!-- Todos os jogos da 1ª fase -->
+      <tr><td>11/06/2026</td><td>México <input type="number" min="0"> x <input type="number" min="0"> África do Sul</td></tr>
+      <tr><td>11/06/2026</td><td>Coreia do Sul <input type="number" min="0"> x <input type="number" min="0"> Tchéquia</td></tr>
+      <tr><td>12/06/2026</td><td>Canadá <input type="number" min="0"> x <input type="number" min="0"> Bósnia</td></tr>
+      <tr><td>12/06/2026</td><td>Estados Unidos <input type="number" min="0"> x <input type="number" min="0"> Paraguai</td></tr>
+      <tr><td>13/06/2026</td><td>Catar <input type="number" min="0"> x <input type="number" min="0"> Suíça</td></tr>
+      <tr><td>13/06/2026</td><td>Brasil <input type="number" min="0"> x <input type="number" min="0"> Marrocos</td></tr>
+      <tr><td>13/06/2026</td><td>Haiti <input type="number" min="0"> x <input type="number" min="0"> Escócia</td></tr>
+      <tr><td>14/06/2026</td><td>Austrália <input type="number" min="0"> x <input type="number" min="0"> Turquia</td></tr>
+      <tr><td>14/06/2026</td><td>Alemanha <input type="number" min="0"> x <input type="number" min="0"> Curaçau</td></tr>
+      <tr><td>14/06/2026</td><td>Países Baixos <input type="number" min="0"> x <input type="number" min="0"> Japão</td></tr>
+      <tr><td>14/06/2026</td><td>Costa do Marfim <input type="number" min="0"> x <input type="number" min="0"> Equador</td></tr>
+      <tr><td>14/06/2026</td><td>Suécia <input type="number" min="0"> x <input type="number" min="0"> Tunísia</td></tr>
+      <tr><td>15/06/2026</td><td>Espanha <input type="number" min="0"> x <input type="number" min="0"> Cabo Verde</td></tr>
+      <tr><td>15/06/2026</td><td>Bélgica <input type="number" min="0"> x <input type="number" min="0"> Egito</td></tr>
+      <tr><td>15/06/2026</td><td>Arábia Saudita <input type="number" min="0"> x <input type="number" min="0"> Uruguai</td></tr>
+      <tr><td>15/06/2026</td><td>Irã <input type="number" min="0"> x <input type="number" min="0"> Nova Zelândia</td></tr>
+      <tr><td>16/06/2026</td><td>França <input type="number" min="0"> x <input type="number" min="0"> Senegal</td></tr>
+      <tr><td>16/06/2026</td><td>Iraque <input type="number" min="0"> x <input type="number" min="0"> Noruega</td></tr>
+      <tr><td>16/06/2026</td><td>Argentina <input type="number" min="0"> x <input type="number" min="0"> Argélia</td></tr>
+      <tr><td>17/06/2026</td><td>Áustria <input type="number" min="0"> x <input type="number" min="0"> Jordânia</td></tr>
+      <tr><td>17/06/2026</td><td>Portugal <input type="number" min="0"> x <input type="number" min="0"> RD do Congo</td></tr>
+      <tr><td>17/06/2026</td><td>Inglaterra <input type="number" min="0"> x <input type="number" min="0"> Croácia</td></tr>
+      <tr><td>17/06/2026</td><td>Gana <input type="number" min="0"> x <input type="number" min="0"> Panamá</td></tr>
+      <tr><td>17/06/2026</td><td>Uzbequistão <input type="number" min="0"> x <input type="number" min="0"> Colômbia</td></tr>
+    </table>
+  </div>
+
+  <button onclick="salvarXLSX()">Salvar em Excel (XLSX)</button>
+  <button onclick="salvarPDF()">Salvar em PDF</button>
+
+  <script>
+  // trava placar negativo
+  document.querySelectorAll('input[type="number"]').forEach(input => {
+    input.addEventListener('input', () => {
+      if (parseInt(input.value) < 0) {
+        input.value = 0;
+        alert("Não é permitido placar negativo!");
+      }
+    });
+  });
+
+  function validarNome() {
+    const nome = document.getElementById("nome").value.trim();
+    if (!nome) {
+      alert("Por favor, preencha o nome antes de salvar!");
+      return null;
+    }
+    return nome;
+  }
+
+function coletarDados(nome) {
+    const dados = [];
+    const linhas = document.querySelectorAll("#tabela tr");
+    // Cabeçalho
+    dados.push(["Nome", "Data", "Time 1", "Placar 1", "Time 2", "Placar 2", "Ganhador"]);
+
+    linhas.forEach((linha, i) => {
+      if (i === 0) return; // pula cabeçalho da tabela
+      const cols = linha.querySelectorAll("td");
+      const data = cols[0].innerText;
+      const confrontoTexto = cols[1].innerText;
+      const inputs = cols[1].querySelectorAll("input");
+      const placar1 = inputs[0].value || "0";
+      const placar2 = inputs[1].value || "0";
+
+      // separa os times
+      const partes = confrontoTexto.split(" x ");
+      const time1 = partes[0].replace(/\d+/g, "").trim();
+      const time2 = partes[1].replace(/\d+/g, "").trim();
+
+      let ganhador = "Empate";
+      if (parseInt(placar1) > parseInt(placar2)) ganhador = time1;
+      else if (parseInt(placar2) > parseInt(placar1)) ganhador = time2;
+
+      dados.push([nome, data, time1, placar1, time2, placar2, ganhador]);
+    });
+    return dados;
+  }
+
+  function salvarXLSX() {
+    const nome = validarNome();
+    if (!nome) return;
+    const dados = coletarDados(nome);
+    const ws = XLSX.utils.aoa_to_sheet(dados);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Bolão");
+    XLSX.writeFile(wb, "bolao_copa2026.xlsx");
+  }
+
+  function salvarPDF() {
+    const nome = validarNome();
+    if (!nome) return;
+    const dados = coletarDados(nome);
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    doc.setFontSize(12);
+    doc.text(`Bolão Copa 2026 - Participante: ${nome}`, 10, 10);
+
+    // cabeçalho da tabela
+    let y = 20;
+    doc.text(dados[0].join(" | "), 10, y);
+    y += 10;
+
+    // linhas da tabela
+    for (let i = 1; i < dados.length; i++) {
+      doc.text(dados[i].join(" | "), 10, y);
+      y += 8;
+      if (y > 280) { doc.addPage(); y = 20; }
+    }
+
+    doc.save("bolao_copa2026.pdf");
+  }
+</script>
