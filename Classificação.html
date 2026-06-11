@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ranking de Pontuação</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f4f4f4;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #2e7d32; /* verde */
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    th, td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background: #2e7d32; /* verde */
+      color: #fff;
+    }
+    tr:nth-child(even) {
+      background: #f9f9f9;
+    }
+    /* Responsividade */
+    @media (max-width: 700px) {
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+      thead tr {
+        display: none;
+      }
+      tr {
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 8px;
+        background: #fff;
+      }
+      td {
+        border: none;
+        display: flex;
+        justify-content: space-between;
+        padding: 6px 8px;
+        font-size: 14px; /* menor */
+      }
+      td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        color: #2e7d32; /* verde */
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Ranking de Pontuação</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Quantidade</th>
+        <th>Participante</th>
+        <th>Soma de Pontuação</th>
+        <th>Acerto Resultado</th>
+        <th>Acerto Placar e Resultado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td data-label="Quantidade">1</td><td data-label="Participante">Walter</td><td data-label="Pontuação">22</td><td data-label="Acerto Resultado">7</td><td data-label="Acerto Placar e Resultado">2</td></tr>
+      <tr><td data-label="Quantidade">2</td><td data-label="Participante">Waleska</td><td data-label="Pontuação">16</td><td data-label="Acerto Resultado">2</td><td data-label="Acerto Placar e Resultado">3</td></tr>
+      <tr><td data-label="Quantidade">3</td><td data-label="Participante">Rene</td><td data-label="Pontuação">16</td><td data-label="Acerto Resultado">6</td><td data-label="Acerto Placar e Resultado">1</td></tr>
+      <tr><td data-label="Quantidade">4</td><td data-label="Participante">Robson Francisco</td><td data-label="Pontuação">16</td><td data-label="Acerto Resultado">6</td><td data-label="Acerto Placar e Resultado">1</td></tr>
+      <tr><td data-label="Quantidade">5</td><td data-label="Participante">Saulo</td><td data-label="Pontuação">14</td><td data-label="Acerto Resultado">3</td><td data-label="Acerto Placar e Resultado">2</td></tr>
+      <tr><td data-label="Quantidade">6</td><td data-label="Participante">Tamara</td><td data-label="Pontuação">8</td><td data-label="Acerto Resultado">4</td><td data-label="Acerto Placar e Resultado">0</td></tr>
+      <tr><td data-label="Quantidade">7</td><td data-label="Participante">Hiago</td><td data-label="Pontuação">6</td><td data-label="Acerto Resultado">3</td><td data-label="Acerto Placar e Resultado">0</td></tr>
+      <tr><td data-label="Quantidade">8</td><td data-label="Participante">Tyssia</td><td data-label="Pontuação">6</td><td data-label="Acerto Resultado">3</td><td data-label="Acerto Placar e Resultado">0</td></tr>
+      <tr><td data-label="Quantidade">9</td><td data-label="Participante">Maria Cristiana</td><td data-label="Pontuação">4</td><td data-label="Acerto Resultado">2</td><td data-label="Acerto Placar e Resultado">0</td></tr>
+      <tr><td data-label="Quantidade">10</td><td data-label="Participante">Lincoln Peres</td><td data-label="Pontuação">2</td><td data-label="Acerto Resultado">1</td><td data-label="Acerto Placar e Resultado">0</td></tr>
+      <tr><td data-label="Quantidade">11</td><td data-label="Participante">Mauro Palmieri</td><td data-label="Pontuação">0</td><td data-label="Acerto Resultado">0</td><td data-label="Acerto Placar e Resultado">0</td></tr>
+    </tbody>
+  </table>
+</body>
+</html>
