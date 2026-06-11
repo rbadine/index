@@ -75,7 +75,7 @@
   </div>
 
   <button onclick="salvarXLSX()">Salvar em Excel (XLSX)</button>
-  <button onclick="salvarPDF()">Salvar em PDF</button>
+
 
   <script>
   // trava placar negativo
@@ -136,28 +136,5 @@ function coletarDados(nome) {
     XLSX.writeFile(wb, "bolao_copa2026.xlsx");
   }
 
-  function salvarPDF() {
-    const nome = validarNome();
-    if (!nome) return;
-    const dados = coletarDados(nome);
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
-
-    doc.setFontSize(12);
-    doc.text(`Bolão Copa 2026 - Participante: ${nome}`, 10, 10);
-
-    // cabeçalho da tabela
-    let y = 20;
-    doc.text(dados[0].join(" | "), 10, y);
-    y += 10;
-
-    // linhas da tabela
-    for (let i = 1; i < dados.length; i++) {
-      doc.text(dados[i].join(" | "), 10, y);
-      y += 8;
-      if (y > 280) { doc.addPage(); y = 20; }
-    }
-
-    doc.save("bolao_copa2026.pdf");
-  }
+ 
 </script>
