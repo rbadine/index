@@ -98,12 +98,19 @@ const ranking = participantes.sort((a, b) => {
   return b.placar - a.placar;
 });
 
-// Renderizar na tabela
+// Gerar classificação com empates
+let classificacao = 0;
+let ultimaPontuacao = null;
 const tbody = document.getElementById("ranking");
+
 ranking.forEach((p, i) => {
+  if (p.pontuacao !== ultimaPontuacao) {
+    classificacao = i + 1; // nova posição
+    ultimaPontuacao = p.pontuacao;
+  }
   tbody.innerHTML += `
     <tr>
-      <td data-label="Classificação">${i+1}</td>
+      <td data-label="Classificação">${classificacao}</td>
       <td data-label="Participante">${p.nome}</td>
       <td data-label="Pontuação">${p.pontuacao}</td>
       <td data-label="Resultado">${p.resultado}</td>
