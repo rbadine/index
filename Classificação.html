@@ -1,113 +1,118 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Ranking</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      margin: 0;
-      padding: 0;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ranking Responsivo</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 10px;
+    background: #f5f5f5;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  th, td {
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #ddd;
+  }
+  th {
+    background: #333;
+    color: #fff;
+  }
+  /* Responsividade para celular */
+  @media (max-width: 600px) {
+    table, thead, tbody, th, td, tr {
+      display: block;
     }
-    h1 {
-      text-align: center;
-      color: #2e7d32;
-      font-size: 1.5em;
-      margin: 15px 0;
+    thead {
+      display: none;
     }
-    .table-container {
-      width: 100%;
-      overflow-x: auto; /* scroll horizontal em telas pequenas */
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      background-color: #fff;
-      min-width: 600px; /* evita quebra extrema */
-    }
-    th {
-      background-color: #2e7d32;
-      color: white;
-      padding: 8px;
-      font-size: 0.9em;
+    tr {
+      margin-bottom: 15px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      padding: 10px;
     }
     td {
-      border: 1px solid #ddd;
-      padding: 6px;
-      text-align: center;
-      font-size: 0.85em;
+      border: none;
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
     }
-    tr:nth-child(even) {
-      background-color: #f9f9f9;
+    td::before {
+      content: attr(data-label);
+      font-weight: bold;
+      color: #333;
     }
-
-    /* Ajustes para celular */
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 1.2em;
-      }
-      th, td {
-        padding: 5px;
-        font-size: 0.75em;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
-  <h1>Ranking dos Participantes</h1>
-  <div class="table-container">
-    <table id="ranking">
-      <thead>
-        <tr>
-          <th>Classificação</th>
-          <th>Participante</th>
-          <th>Pontos</th>
-          <th>Resultado</th>
-          <th>Placar</th>
-          <th>Prêmio</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  </div>
 
-  <script>
-    const participantes = [
-      {classificacao:1, nome:"Jhow", pontos:24, resultado:4, placar:4, premio:"R$ 198,00"},
-      {classificacao:2, nome:"Tamara", pontos:20, resultado:6, placar:2, premio:"R$ 40,50"},
-      {classificacao:2, nome:"Walter", pontos:20, resultado:4, placar:3, premio:"R$ 40,50"},
-      {classificacao:2, nome:"Mauro Palmieri", pontos:20, resultado:6, placar:2, premio:"R$ 40,50"},
-      {classificacao:2, nome:"Waleska", pontos:20, resultado:8, placar:1, premio:"R$ 40,50"},
-      {classificacao:6, nome:"Thaís", pontos:16, resultado:4, placar:2, premio:"R$ 0,00"},
-      {classificacao:7, nome:"José Bernardes Miranda", pontos:14, resultado:5, placar:1, premio:"R$ 0,00"},
-      {classificacao:7, nome:"Lorenzo", pontos:14, resultado:7, placar:0, premio:"R$ 0,00"},
-      {classificacao:7, nome:"Rene", pontos:14, resultado:3, placar:2, premio:"R$ 0,00"},
-      {classificacao:7, nome:"Paulo Vinícius R Silva", pontos:14, resultado:5, placar:1, premio:"R$ 0,00"},
-      {classificacao:7, nome:"Hiago", pontos:14, resultado:7, placar:0, premio:"R$ 0,00"},
-      {classificacao:7, nome:"Tyssia", pontos:14, resultado:5, placar:1, premio:"R$ 0,00"},
-      {classificacao:13, nome:"Ericelso", pontos:12, resultado:4, placar:1, premio:"R$ 0,00"},
-      {classificacao:13, nome:"Lincoln Peres", pontos:12, resultado:6, placar:0, premio:"R$ 0,00"},
-      {classificacao:13, nome:"Thiago Mota", pontos:12, resultado:6, placar:0, premio:"R$ 0,00"},
-      {classificacao:13, nome:"Robson Francisco", pontos:12, resultado:4, placar:1, premio:"R$ 0,00"},
-      {classificacao:17, nome:"Maria Cristiana", pontos:10, resultado:5, placar:0, premio:"R$ 0,00"},
-      {classificacao:18, nome:"Saulo", pontos:8, resultado:4, placar:0, premio:"R$ 0,00"}
-    ];
+<h2>🏆 Ranking</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Classificação</th>
+      <th>Participante</th>
+      <th>Pontuação</th>
+      <th>Resultado</th>
+      <th>Placar</th>
+      <th>Prêmio</th>
+    </tr>
+  </thead>
+  <tbody id="ranking"></tbody>
+</table>
 
-    const tbody = document.querySelector("#ranking tbody");
+<script>
+const participantes = [
+  { nome: "Mauro Palmieri", pontuacao: 28, resultado: 10, placar: 2, premio: "R$ 153,00" },
+  { nome: "Waleska", pontuacao: 28, resultado: 12, placar: 1, premio: "R$ 153,00" },
+  { nome: "Tamara", pontuacao: 26, resultado: 9, placar: 2, premio: "R$ 27,00" },
+  { nome: "Jhow", pontuacao: 26, resultado: 5, placar: 4, premio: "R$ 27,00" },
+  { nome: "Thaís", pontuacao: 24, resultado: 6, placar: 3, premio: "R$ 0,00" },
+  { nome: "Lorenzo", pontuacao: 24, resultado: 10, placar: 1, premio: "R$ 0,00" },
+  { nome: "José Bernardes Miranda", pontuacao: 24, resultado: 8, placar: 2, premio: "R$ 0,00" },
+  { nome: "Walter", pontuacao: 24, resultado: 6, placar: 3, premio: "R$ 0,00" },
+  { nome: "Paulo Vinícius R Silva", pontuacao: 22, resultado: 9, placar: 1, premio: "R$ 0,00" },
+  { nome: "Robson Francisco", pontuacao: 22, resultado: 7, placar: 2, premio: "R$ 0,00" },
+  { nome: "Lincoln Peres", pontuacao: 22, resultado: 9, placar: 1, premio: "R$ 0,00" },
+  { nome: "Tyssia", pontuacao: 22, resultado: 7, placar: 2, premio: "R$ 0,00" },
+  { nome: "Rene", pontuacao: 20, resultado: 6, placar: 2, premio: "R$ 0,00" },
+  { nome: "Thiago Mota", pontuacao: 20, resultado: 8, placar: 1, premio: "R$ 0,00" },
+  { nome: "Hiago", pontuacao: 20, resultado: 10, placar: 0, premio: "R$ 0,00" },
+  { nome: "Maria Cristiana", pontuacao: 18, resultado: 7, placar: 1, premio: "R$ 0,00" },
+  { nome: "Ericelso", pontuacao: 18, resultado: 7, placar: 1, premio: "R$ 0,00" },
+  { nome: "Saulo", pontuacao: 16, resultado: 8, placar: 0, premio: "R$ 0,00" }
+];
 
-    participantes.forEach(p => {
-      const tr = document.createElement("tr");
-      tr.innerHTML = `
-        <td>${p.classificacao}</td>
-        <td>${p.nome}</td>
-        <td>${p.pontos}</td>
-        <td>${p.resultado}</td>
-        <td>${p.placar}</td>
-        <td>${p.premio}</td>
-      `;
-      tbody.appendChild(tr);
-    });
-  </script>
+// Ordenar ranking
+const ranking = participantes.sort((a, b) => {
+  if (b.pontuacao !== a.pontuacao) return b.pontuacao - a.pontuacao;
+  if (b.resultado !== a.resultado) return b.resultado - a.resultado;
+  return b.placar - a.placar;
+});
+
+// Renderizar na tabela
+const tbody = document.getElementById("ranking");
+ranking.forEach((p, i) => {
+  tbody.innerHTML += `
+    <tr>
+      <td data-label="Classificação">${i+1}</td>
+      <td data-label="Participante">${p.nome}</td>
+      <td data-label="Pontuação">${p.pontuacao}</td>
+      <td data-label="Resultado">${p.resultado}</td>
+      <td data-label="Placar">${p.placar}</td>
+      <td data-label="Prêmio">${p.premio}</td>
+    </tr>
+  `;
+});
+</script>
+
 </body>
 </html>
