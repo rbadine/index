@@ -1,4 +1,54 @@
-<tr><td>24/06/2026</td><td>África do Sul <input type="number" min="0"> x <input type="number" min="0">  Coreia do Sul</td></tr>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Bolão Copa 2026 Contabilidade</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsivo -->
+  <style>
+    body { font-family: Arial, sans-serif; margin: 10px; background: #f4f4f4; }
+    h1 { text-align: center; color: #006400; font-size: 1.6em; }
+    .tabela-container { overflow-x: auto; }
+    table { border-collapse: collapse; width: 100%; background: #fff; font-size: 0.9em; }
+    th, td { border: 1px solid #ccc; padding: 6px; text-align: center; }
+    input[type="number"] { width: 50px; text-align: center; font-size: 1em; }
+    input[type="text"] { width: 100%; max-width: 250px; padding: 6px; font-size: 1em; }
+    button {
+      margin: 10px 5px;
+      padding: 12px;
+      font-size: 1em;
+      background-color: #006400;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover { background-color: #228B22; }
+    @media (max-width: 600px) {
+      h1 { font-size: 1.3em; }
+      table { font-size: 0.8em; }
+      input[type="number"] { width: 40px; font-size: 0.9em; }
+      button { width: 100%; font-size: 0.95em; }
+    }
+  </style>
+  <!-- Bibliotecas externas -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <h1>Bolão Copa do Mundo 2026 - Terceira Rodada</h1>
+
+  <label>Nome do participante: <input type="text" id="nome"></label>
+
+  <div class="tabela-container">
+    <table id="tabela">
+      <tr>
+        <th>Data</th>
+        <th>Confronto</th>
+      </tr>
+      <!-- Todos os jogos da 3ª fase -->
+      
+ <tr><td>24/06/2026</td><td>África do Sul <input type="number" min="0"> x <input type="number" min="0">  Coreia do Sul</td></tr>
 <tr><td>24/06/2026</td><td>Tchéquia <input type="number" min="0"> x <input type="number" min="0">  México</td></tr>
 <tr><td>24/06/2026</td><td>Bósnia e Herzegovina <input type="number" min="0"> x <input type="number" min="0">  Catar</td></tr>
 <tr><td>24/06/2026</td><td>Suíça <input type="number" min="0"> x <input type="number" min="0">  Canadá</td></tr>
@@ -22,3 +72,78 @@
 <tr><td>27/06/2026</td><td>Colômbia <input type="number" min="0"> x <input type="number" min="0">  Portugal</td></tr>
 <tr><td>27/06/2026</td><td>Croácia <input type="number" min="0"> x <input type="number" min="0">  Gana</td></tr>
 <tr><td>27/06/2026</td><td>Panamá <input type="number" min="0"> x <input type="number" min="0">  Inglaterra</td></tr>
+
+      
+    </table>
+  </div>
+
+  <button onclick="salvarXLSX()">Salvar em Excel (XLSX)</button>
+
+
+  <script>
+  // trava placar negativo
+  document.querySelectorAll('input[type="number"]').forEach(input => {
+    input.addEventListener('input', () => {
+      if (parseInt(input.value) < 0) {
+        input.value = 0;
+        alert("Não é permitido placar negativo!");
+      }
+    });
+  });
+
+  function validarNome() {
+    const nome = document.getElementById("nome").value.trim();
+    if (!nome) {
+      alert("Por favor, preencha o nome antes de salvar!");
+      return null;
+    }
+    return nome;
+  }
+
+function coletarDados(nome) {
+    const dados = [];
+    const linhas = document.querySelectorAll("#tabela tr");
+    // Cabeçalho
+    dados.push(["Nome", "Data", "Time 1", "Placar 1", "Time 2", "Placar 2", "Ganhador"]);
+
+    linhas.forEach((linha, i) => {
+      if (i === 0) return; // pula cabeçalho da tabela
+      const cols = linha.querySelectorAll("td");
+      const data = cols[0].innerText;
+      const confrontoTexto = cols[1].innerText;
+      const inputs = cols[1].querySelectorAll("input");
+      const placar1 = inputs[0].value || "0";
+      const placar2 = inputs[1].value || "0";
+
+      // separa os times
+      const partes = confrontoTexto.split(" x ");
+      const time1 = partes[0].replace(/\d+/g, "").trim();
+      const time2 = partes[1].replace(/\d+/g, "").trim();
+
+      let ganhador = "Empate";
+      if (parseInt(placar1) > parseInt(placar2)) ganhador = time1;
+      else if (parseInt(placar2) > parseInt(placar1)) ganhador = time2;
+
+      dados.push([nome, data, time1, placar1, time2, placar2, ganhador]);
+    });
+    return dados;
+  }
+
+  function salvarXLSX() {
+    const nome = validarNome();
+    if (!nome) return;
+    const dados = coletarDados(nome);
+    const ws = XLSX.utils.aoa_to_sheet(dados);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Bolão");
+    XLSX.writeFile(wb, "bolao_copa2026 "+nome+" 3 Rodada.xlsx");
+  }
+
+ 
+</script>
+
+
+
+
+
+
