@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Jogos da Copa 2026 - 2ª e 3ª Rodada</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsivo -->
+  <style>
+    body { 
+      font-family: Arial, sans-serif; 
+      margin: 20px; 
+      background: #f9f9f9;
+    }
+    h2 { 
+      color: #006400; 
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    ul { 
+      list-style: none; 
+      padding: 0; 
+    }
+    li { 
+      background: #fff; 
+      margin: 5px 0; 
+      padding: 10px; 
+      border-radius: 5px; 
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    input[type="date"] { 
+      padding: 10px; 
+      font-size: 1em; 
+      margin-bottom: 15px; 
+      width: 100%; 
+      max-width: 300px; 
+      border: 1px solid #ccc; 
+      border-radius: 5px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Responsividade */
+    @media (max-width: 600px) {
+      body { margin: 10px; font-size: 14px; }
+      h2 { font-size: 1.2em; }
+      input[type="date"] { font-size: 0.9em; padding: 8px; max-width: 100%; }
+      li { font-size: 13px; padding: 8px; }
+    }
+  </style>
+</head>
+<body>
+  <h2>Selecione a data para ver os jogos</h2>
+  <input type="date" id="dataInput">
+  <ul id="lista-jogos"></ul>
+
+  <script>
+    // Lista de jogos (2ª e 3ª rodada)
+    const jogos = [
+      { data: "2026-06-18", horario: "13h", confronto: "República Tcheca x África do Sul" },
+      { data: "2026-06-18", horario: "16h", confronto: "Suíça x Bósnia e Herzegovina" },
+      { data: "2026-06-18", horario: "19h", confronto: "Canadá x Catar" },
+      { data: "2026-06-18", horario: "22h", confronto: "México x Coreia do Sul" },
+      { data: "2026-06-19", horario: "16h", confronto: "Estados Unidos x Austrália" },
+      { data: "2026-06-19", horario: "19h", confronto: "Escócia x Marrocos" },
+      { data: "2026-06-19", horario: "21h30", confronto: "Brasil x Haiti" },
+      { data: "2026-06-20", horario: "0h", confronto: "Turquia x Paraguai" },
+      { data: "2026-06-20", horario: "14h", confronto: "Holanda x Suécia" },
+      { data: "2026-06-20", horario: "17h", confronto: "Alemanha x Costa do Marfim" },
+      { data: "2026-06-20", horario: "21h", confronto: "Equador x Curaçau" },
+      { data: "2026-06-21", horario: "1h", confronto: "Tunísia x Japão" },
+      { data: "2026-06-21", horario: "13h", confronto: "Espanha x Arábia Saudita" },
+      { data: "2026-06-21", horario: "16h", confronto: "Bélgica x Irã" },
+      { data: "2026-06-21", horario: "19h", confronto: "Uruguai x Cabo Verde" },
+      { data: "2026-06-21", horario: "22h", confronto: "Nova Zelândia x Egito" },
+      { data: "2026-06-22", horario: "14h", confronto: "Argentina x Áustria" },
+      { data: "2026-06-22", horario: "18h", confronto: "França x Iraque" },
+      { data: "2026-06-22", horario: "21h", confronto: "Noruega x Senegal" },
+      { data: "2026-06-23", horario: "0h", confronto: "Jordânia x Argélia" },
+      { data: "2026-06-23", horario: "14h", confronto: "Portugal x Uzbequistão" },
+      { data: "2026-06-23", horario: "17h", confronto: "Inglaterra x Gana" },
+      { data: "2026-06-23", horario: "20h", confronto: "Panamá x Croácia" },
+      { data: "2026-06-23", horario: "23h", confronto: "Colômbia x RD Congo" },
+      { data: "2026-06-24", horario: "16h", confronto: "Suíça x Canadá" },
+      { data: "2026-06-24", horario: "16h", confronto: "Bósnia x Catar" },
+      { data: "2026-06-24", horario: "19h", confronto: "Marrocos x Haiti" },
+      { data: "2026-06-24", horario: "19h", confronto: "Escócia x Brasil" },
+      { data: "2026-06-24", horario: "22h", confronto: "África do Sul x Coreia do Sul" },
+      { data: "2026-06-24", horario: "22h", confronto: "República Tcheca x México" },
+      { data: "2026-06-25", horario: "17h", confronto: "Equador x Alemanha" },
+      { data: "2026-06-25", horario: "17h", confronto: "Curaçao x Costa do Marfim" },
+      { data: "2026-06-25", horario: "20h", confronto: "Tunísia x Holanda" },
+      { data: "2026-06-25", horario: "20h", confronto: "Japão x Suécia" },
+      { data: "2026-06-25", horario: "23h", confronto: "Turquia x Estados Unidos" },
+      { data: "2026-06-25", horario: "23h", confronto: "Paraguai x Austrália" },
+      { data: "2026-06-26", horario: "16h", confronto: "Senegal x Iraque" },
+      { data: "2026-06-26", horario: "16h", confronto: "Noruega x França" },
+      { data: "2026-06-26", horario: "21h", confronto: "Cabo Verde x Arábia Saudita" },
+      { data: "2026-06-26", horario: "21h", confronto: "Uruguai x Espanha" },
+      { data: "2026-06-26", horario: "0h", confronto: "Egito x Irã" },
+      { data: "2026-06-26", horario: "0h", confronto: "Nova Zelândia x Bélgica" },
+      { data: "2026-06-27", horario: "18h", confronto: "Croácia x Gana" },
+      { data: "2026-06-27", horario: "18h", confronto: "Panamá x Inglaterra" },
+      { data: "2026-06-27", horario: "20h30", confronto: "RD Congo x Uzbequistão" },
+      { data: "2026-06-27", horario: "20h30", confronto: "Colômbia x Portugal" },
+      { data: "2026-06-27", horario: "23h", confronto: "Jordânia x Argentina" },
+      { data: "2026-06-27", horario: "23h", confronto: "Argélia x Áustria" },
+    ];
+
+    const input = document.getElementById("dataInput");
+    const lista = document.getElementById("lista-jogos");
+
+    input.addEventListener("change", () => {
+      const dataSelecionada = input.value; // formato YYYY-MM-DD
+      lista.innerHTML = "";
+
+      const jogosDoDia = jogos.filter(j => j.data === dataSelecionada);
+
+      if (jogosDoDia.length > 0) {
+        // Converter para formato brasileiro
+        const partes = dataSelecionada.split("-");
+        const dataBR = `${partes[2]}/${partes[1]}/${partes[0]}`;
+
+        jogosDoDia.forEach(jogo => {
+          const item = document.createElement("li");
+          item.textContent = `${dataBR} - ${jogo.horario}: ${jogo.confronto}`;
+          lista.appendChild(item);
+        });
+      } else {
+        lista.innerHTML = "<li>Nenhum jogo nesta data.</li>";
+      }
+    });
+  </script>
+</body>
+</html>
