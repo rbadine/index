@@ -17,13 +17,39 @@
     margin-top: 15px;
   }
 
-  #jogadorSelect {
+  .container {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 15px;
+  }
+
+  #jogadorInput {
     width: 100%;
     padding: 10px;
     font-size: 16px;
-    margin-bottom: 15px;
     border-radius: 5px;
     border: 1px solid #ccc;
+  }
+
+  #sugestoes {
+    border: 1px solid #ccc;
+    border-top: none;
+    width: 100%;
+    max-height: 150px;
+    overflow-y: auto;
+    background: #fff;
+    position: absolute;
+    z-index: 1000;
+  }
+
+  #sugestoes div {
+    padding: 8px;
+    cursor: pointer;
+  }
+
+  #sugestoes div:hover {
+    background-color: #f0f0f0;
   }
 
   #resultado {
@@ -46,12 +72,11 @@
     font-size: 14px;
   }
 
-  /* Responsividade */
   @media (max-width: 600px) {
     body {
       font-size: 14px;
     }
-    #jogadorSelect {
+    #jogadorInput {
       font-size: 14px;
       padding: 8px;
     }
@@ -64,13 +89,17 @@
 </head>
 <body>
 
-<select id="jogadorSelect"></select>
+<div class="container">
+  <input type="text" id="jogadorInput" placeholder="Pesquisar jogador...">
+  <div id="sugestoes"></div>
+</div>
+
 <div id="resultado"></div>
 
 <script>
 // Exemplo simplificado de palpites (substitua pelo JSON completo)
 const palpites = [
-  { jogador : ""},
+{ jogador : ""},
   { jogador : "Rene", data: "11/06/2026", time1: "México", placar1: 3, time2: "África do Sul", placar2: 1, resultado: "México"},
   { jogador : "Rene", data: "11/06/2026", time1: "Coreia do Sul", placar1: 1, time2: "Tchéquia", placar2: 1, resultado: "Empate"},
   { jogador : "Rene", data: "12/06/2026", time1: "Canadá", placar1: 2, time2: "Bósnia", placar2: 0, resultado: "Canadá"},
@@ -887,12 +916,6 @@ const palpites = [
   { jogador : "Lincoln Peres", data: "23/06/2026", time1: "Inglaterra", placar1: 3, time2: "Gana", placar2: 0, resultado: "Inglaterra"},
   { jogador : "Lincoln Peres", data: "24/06/2026", time1: "Panamá", placar1: 1, time2: "Croácia", placar2: 2, resultado: "Croácia"},
   { jogador : "Lincoln Peres", data: "24/06/2026", time1: "Colômbia", placar1: 2, time2: "RD do Congo", placar2: 0, resultado: "Colômbia"},
-
-
-
-
-
-  
 ];
 
 // Agrupar palpites por jogador
@@ -904,21 +927,26 @@ palpites.forEach(p => {
   jogadores[p.jogador].push(p);
 });
 
-// Popular o <select> com os nomes dos jogadores
-const select = document.getElementById("jogadorSelect");
-Object.keys(jogadores).forEach(nome => {
-  const option = document.createElement("option");
-  option.value = nome;
-  option.textContent = nome;
-  select.appendChild(option);
-});
+const input = document.getElementById("jogadorInput");
+const sugestoes = document.getElementById("sugestoes");
+const resultadoDiv = document.getElementById("resultado");
 
-// Mostrar palpites ao selecionar jogador
-select.addEventListener("change", function() {
-  const jogador = this.value;
-  const resultadoDiv = document.getElementById("resultado");
+function mostrarNomes(lista) {
+  sugestoes.innerHTML = '';
+  lista.forEach(nome => {
+    const div = document.createElement("div");
+    div.textContent = nome;
+    div.addEventListener("click", () => {
+      input.value = nome;
+      sugestoes.innerHTML = '';
+      mostrarPalpites(nome);
+    });
+    sugestoes.appendChild(div);
+  });
+}
+
+function mostrarPalpites(jogador) {
   resultadoDiv.innerHTML = `<h3>Palpites de ${jogador}</h3>`;
-  
   if (jogadores[jogador]) {
     const lista = document.createElement("ul");
     jogadores[jogador].forEach(p => {
@@ -929,6 +957,25 @@ select.addEventListener("change", function() {
     resultadoDiv.appendChild(lista);
   } else {
     resultadoDiv.innerHTML += "<p>Nenhum palpite registrado.</p>";
+  }
+}
+
+// Mostrar todos os nomes ao clicar
+input.addEventListener("focus", () => {
+  mostrarNomes(Object.keys(jogadores));
+});
+
+// Filtrar conforme digita
+input.addEventListener("keyup", () => {
+  const filtro = input.value.toLowerCase();
+  const filtrados = Object.keys(jogadores).filter(nome => nome.toLowerCase().includes(filtro));
+  mostrarNomes(filtrados);
+});
+
+// Esconder lista ao clicar fora
+document.addEventListener("click", (event) => {
+  if (!input.contains(event.target) && !sugestoes.contains(event.target)) {
+    sugestoes.innerHTML = '';
   }
 });
 </script>
