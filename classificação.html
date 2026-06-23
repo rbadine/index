@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Classificação dos Grupos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 10px;
+      padding: 0;
+      background: #f9f9f9;
+    }
+    h1 {
+      text-align: center;
+      font-size: 1.4em;
+    }
+    h2 {
+      margin-top: 10px;
+      font-size: 1.1em;
+      text-align: center;
+      width: 70%;
+      margin: 0 auto;
+    }
+    table {
+      border-collapse: collapse;
+      width: 70%;
+      margin: 10px 0;
+      margin-left: 130px;
+      background: #fff;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    th, td {
+      padding: 10px;
+      text-align: center;
+      font-size: 0.9em;
+    }
+    th {
+      background-color: #006400;
+      color: #fff;
+    }
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+    
+    /* Layout em pares */
+    .grupo-pares {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    .grupo {
+      flex: 1;
+      min-width: 250px;
+    }
+    /* Responsividade */
+    @media (max-width: 600px) {
+      table, th, td { font-size: 0.8em; }
+      h1 { font-size: 1.2em; }
+      h2 { font-size: 1em; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Classificação dos Grupos</h1>
+  <div id="classificacao"></div>
+
+  <script>
+    // Exemplo de JSON gerado
+const classificacao = {
+  "A": [
+    { posicao: 1, time: "México", pontos: 6 },
+    { posicao: 2, time: "Coreia do Sul", pontos: 3 },
+    { posicao: 3, time: "Tchéquia", pontos: 1 },
+    { posicao: 4, time: "África do Sul", pontos: 1 }
+  ],
+  "B": [
+    { posicao: 1, time: "Suíça", pontos: 4 },
+    { posicao: 2, time: "Canadá", pontos: 4 },
+    { posicao: 3, time: "Bósnia", pontos: 1 },
+    { posicao: 4, time: "Catar", pontos: 1 }
+  ],
+  "C": [
+    { posicao: 1, time: "Brasil", pontos: 4 },
+    { posicao: 2, time: "Marrocos", pontos: 4 },
+    { posicao: 3, time: "Escócia", pontos: 3 },
+    { posicao: 4, time: "Haiti", pontos: 0 }
+  ],
+  "D": [
+    { posicao: 1, time: "Estados Unidos", pontos: 6 },
+    { posicao: 2, time: "Austrália", pontos: 3 },
+    { posicao: 3, time: "Paraguai", pontos: 3 },
+    { posicao: 4, time: "Turquia", pontos: 0 }
+  ],
+  "E": [
+    { posicao: 1, time: "Alemanha", pontos: 6 },
+    { posicao: 2, time: "Costa do Marfim", pontos: 3 },
+    { posicao: 3, time: "Equador", pontos: 1 },
+    { posicao: 4, time: "Curaçau", pontos: 1 }
+  ],
+  "F": [
+    { posicao: 1, time: "Países Baixos", pontos: 4 },
+    { posicao: 2, time: "Japão", pontos: 4 },
+    { posicao: 3, time: "Suécia", pontos: 3 },    
+    { posicao: 4, time: "Tunisia", pontos: 0 }
+  ],
+  "G": [
+    { posicao: 1, time: "Egito", pontos: 3 },
+    { posicao: 2, time: "Irã", pontos: 2 },
+    { posicao: 3, time: "Bélgica", pontos: 2 },
+    { posicao: 4, time: "Nova Zelândia", pontos: 1 }
+  ],
+  "H": [
+    { posicao: 1, time: "Espanha", pontos: 4 },
+    { posicao: 2, time: "Uruguai", pontos: 1 },
+    { posicao: 3, time: "Cabo Verde", pontos: 1 },
+    { posicao: 4, time: "Arábia Saudita", pontos: 1 }
+  ],
+  "I": [
+    { posicao: 1, time: "França", pontos: 6 },
+    { posicao: 2, time: "Noruega", pontos: 6 },
+    { posicao: 3, time: "Senegal", pontos: 0 }, 
+    { posicao: 4, time: "Iraque", pontos: 0 }
+  ],
+  "J": [
+    { posicao: 1, time: "Argentina", pontos: 6 },
+    { posicao: 2, time: "Áustria", pontos: 3 },
+    { posicao: 3, time: "Argélia", pontos: 3 },
+    { posicao: 4, time: "Jordânia", pontos: 0 }
+  ],
+  "K": [
+    { posicao: 1, time: "Colômbia", pontos: 3 },
+    { posicao: 2, time: "RD do Congo", pontos: 1 },
+    { posicao: 3, time: "Portugal", pontos: 1 },
+    { posicao: 4, time: "Uzbequistão", pontos: 0 }
+  ],
+  "L": [
+    { posicao: 1, time: "Inglaterra", pontos: 3 },
+    { posicao: 2, time: "Gana", pontos: 3 },
+    { posicao: 3, time: "Panamá", pontos: 0 },
+    { posicao: 4, time: "Croácia", pontos: 0 }
+  ]
+};
+
+
+   function renderTabela(grupo, times) {
+      let html = `<h2>Grupo ${grupo}</h2>`;
+      html += `<table>
+        <tr><th>Posição</th><th>Time</th><th>Pontos</th></tr>`;
+      times.forEach(t => {
+        let classe = "";
+        if (t.posicao === 1) classe = "ouro";
+        else if (t.posicao === 2) classe = "prata";
+        else if (t.posicao === 3) classe = "bronze";
+        html += `<tr class="${classe}">
+          <td>${t.posicao}</td>
+          <td>${t.time}</td>
+          <td>${t.pontos}</td>
+        </tr>`;
+      });
+      html += `</table>`;
+      return html;
+    }
+
+    const container = document.getElementById("classificacao");
+    const grupos = Object.keys(classificacao);
+
+    // Renderiza em pares (A-B, C-D, etc.)
+    for (let i = 0; i < grupos.length; i += 2) {
+      const grupo1 = grupos[i];
+      const grupo2 = grupos[i + 1];
+      let html = `<div class="grupo-pares">`;
+      html += `<div class="grupo">${renderTabela(grupo1, classificacao[grupo1])}</div>`;
+      if (grupo2) {
+        html += `<div class="grupo">${renderTabela(grupo2, classificacao[grupo2])}</div>`;
+      }
+      html += `</div>`;
+      container.innerHTML += html;
+    }
+  </script>
+</body>
+</html>
+
