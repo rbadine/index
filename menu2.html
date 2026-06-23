@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Bolão Copa 2026</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsivo -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      color: #006400;
+      margin: 30px 10px;
+      font-size: 1.8em;
+    }
+    .menu {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      padding: 20px;
+    }
+    button {
+      flex: 1 1 200px; /* ocupa espaço proporcional */
+      max-width: 250px;
+      padding: 15px;
+      font-size: 1em;
+      background-color: #006400;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #228B22;
+    }
+    @media (max-width: 600px) {
+      h1 { font-size: 1.4em; }
+      button { font-size: 0.95em; padding: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Palpites da Galera 2026</h1>
+  <div class="menu">
+    <button onclick="window.location.href='palpites por participante.html'">classificação dos grupos dos participantes</button>
+    <button onclick="window.location.href='classificação.html'">Classificação dos grupos</button>
+  </div>
+</body>
+</html>
