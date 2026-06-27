@@ -60,11 +60,26 @@
       font-weight: bold;
       color: #333;
     }
+    .nome {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .nome input {
+      width: 80%;
+      padding: 10px;
+      font-size: 16px;
+    }
   </style>
 </head>
 <body>
 
   <h2>Copa do Mundo 2026 - Mata-mata</h2>
+
+  <!-- Campo para cadastrar o nome -->
+  <div class="nome">
+    <label for="nomePessoa">Seu nome:</label><br>
+    <input type="text" id="nomePessoa" placeholder="Digite seu nome">
+  </div>
 
   <div class="jogo" id="jogo1">
     <div class="equipes">
@@ -90,7 +105,7 @@
     <div class="resultado" id="resultado2"></div>
   </div>
 
-
+  <!-- Botão para exportar -->
   <button onclick="exportarExcel()">Salvar Palpites em Excel</button>
 
   <script>
@@ -123,7 +138,10 @@
     }
 
     function exportarExcel() {
+      const nomePessoa = document.getElementById("nomePessoa").value || "Anônimo";
+
       const dados = Object.values(resultados).map(r => ({
+        Nome: nomePessoa,
         Jogo: r.jogo,
         TimeA: r.timeA,
         PlacarA: r.placarA,
@@ -135,7 +153,7 @@
       const ws = XLSX.utils.json_to_sheet(dados);
       const wb = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(wb, ws, "Palpites");
-      XLSX.writeFile(wb, "palpites_copa2026.xlsx");
+      XLSX.writeFile(wb, `palpites_${nomePessoa}.xlsx`);
     }
   </script>
 
