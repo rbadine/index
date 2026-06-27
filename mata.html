@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Copa 2026 - Mata-mata</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 15px;
+      background: #f4f4f4;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .jogo {
+      background: #fff;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .equipes {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+    .equipes span {
+      flex: 1;
+      text-align: center;
+      font-size: 16px;
+    }
+    input {
+      width: 60px;
+      text-align: center;
+      font-size: 16px;
+      margin: 5px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      background: #28a745; /* verde */
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #1e7e34;
+    }
+    .resultado {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Copa do Mundo 2026 - Mata-mata</h2>
+
+  <div class="jogo" id="jogo1">
+    <div class="equipes">
+      <span>África do Sul</span>
+      <input type="number" id="placarA1" min="0">
+      <span>x</span>
+      <input type="number" id="placarB1" min="0">
+      <span>Canadá</span>
+    </div>
+    <button onclick="definirClassificado(1, 'África do Sul', 'Canadá')">Definir Classificado</button>
+    <div class="resultado" id="resultado1"></div>
+  </div>
+
+  <div class="jogo" id="jogo2">
+    <div class="equipes">
+      <span>Brasil</span>
+      <input type="number" id="placarA2" min="0">
+      <span>x</span>
+      <input type="number" id="placarB2" min="0">
+      <span>Japão</span>
+    </div>
+    <button onclick="definirClassificado(2, 'Brasil', 'Japão')">Definir Classificado</button>
+    <div class="resultado" id="resultado2"></div>
+  </div>
+
+
+  <button onclick="exportarExcel()">Salvar Palpites em Excel</button>
+
+  <script>
+    const resultados = {};
+
+    function definirClassificado(jogo, timeA, timeB) {
+      const placarA = parseInt(document.getElementById("placarA" + jogo).value) || 0;
+      const placarB = parseInt(document.getElementById("placarB" + jogo).value) || 0;
+      let vencedor;
+
+      if (placarA > placarB) {
+        vencedor = timeA;
+      } else if (placarB > placarA) {
+        vencedor = timeB;
+      } else {
+        vencedor = prompt("Empate! Digite o time classificado:");
+      }
+
+      resultados[jogo] = {
+        jogo,
+        timeA,
+        placarA,
+        timeB,
+        placarB,
+        classificado: vencedor
+      };
+
+      document.getElementById("resultado" + jogo).innerText =
+        `Placar: ${placarA} x ${placarB} → Classificado: ${vencedor}`;
+    }
+
+    function exportarExcel() {
+      const dados = Object.values(resultados).map(r => ({
+        Jogo: r.jogo,
+        TimeA: r.timeA,
+        PlacarA: r.placarA,
+        TimeB: r.timeB,
+        PlacarB: r.placarB,
+        Classificado: r.classificado
+      }));
+
+      const ws = XLSX.utils.json_to_sheet(dados);
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, "Palpites");
+      XLSX.writeFile(wb, "palpites_copa2026.xlsx");
+    }
+  </script>
+
+</body>
+</html>
