@@ -63,7 +63,7 @@
       <th>Pontuação</th>
       <th>Resultado</th>
       <th>Placar</th>
-      <th>ALL WIN</th>
+      <th>ALLWIN</th>
       <th>Prêmio</th>
     </tr>
   </thead>
@@ -74,25 +74,25 @@
 const participantes = [
 
 
-   { nome: "Robson Francisco", pontuacao: 26, resultado: 0, placar: 5, ALL WIN : 1, premio: "R$ 209" },
-  { nome: "Waleska", pontuacao: 24, resultado: 0, placar: 3, ALL WIN : 2, premio: "R$ 34,2" },
-  { nome: "Thaís", pontuacao: 24, resultado: 1, placar: 4, ALL WIN : 1, premio: "R$ 34,2" },
-  { nome: "Saulo", pontuacao: 24, resultado: 0, placar: 3, ALL WIN : 2, premio: "R$ 34,2" },
-  { nome: "Mauro Palmieri", pontuacao: 24, resultado: 1, placar: 4, ALL WIN : 1, premio: "R$ 34,2" },
-  { nome: "Paulo Vinícius R Silva", pontuacao: 24, resultado: 0, placar: 3, ALL WIN : 2, premio: "R$ 34,2" },
-  { nome: "Tyssia", pontuacao: 22, resultado: 1, placar: 5, ALL WIN : 0, premio: "R$ 0" },
-  { nome: "Diego", pontuacao: 22, resultado: 0, placar: 4, ALL WIN : 1, premio: "R$ 0" },
-  { nome: "Lorenzo", pontuacao: 22, resultado: 1, placar: 2, ALL WIN : 2, premio: "R$ 0" },
-  { nome: "Tamara", pontuacao: 20, resultado: 1, placar: 3, ALL WIN : 1, premio: "R$ 0" },
-  { nome: "Walter", pontuacao: 20, resultado: 1, placar: 3, ALL WIN : 1, premio: "R$ 0" },
-  { nome: "Ericelso", pontuacao: 20, resultado: 1, placar: 3, ALL WIN : 1, premio: "R$ 0" },
-  { nome: "José Bernardes Miranda", pontuacao: 18, resultado: 0, placar: 3, ALL WIN : 1, premio: "R$ 0" },
-  { nome: "Maria Cristiana", pontuacao: 18, resultado: 0, placar: 3, ALL WIN : 1, premio: "R$ 0" },
-  { nome: "Hiago", pontuacao: 16, resultado: 1, placar: 2, ALL WIN : 1, premio: "R$ 0" },
-  { nome: "Lincoln Peres", pontuacao: 16, resultado: 0, placar: 4, ALL WIN : 0, premio: "R$ 0" },
-  { nome: "Thiago mota", pontuacao: 16, resultado: 0, placar: 4, ALL WIN : 0, premio: "R$ 0" },
-  { nome: "Rene", pontuacao: 16, resultado: 2, placar: 3, ALL WIN : 0, premio: "R$ 0" },
-  { nome: "Jhow", pontuacao: 14, resultado: 1, placar: 3, ALL WIN : 0, premio: "R$ 0" },
+    { nome: "Robson Francisco", pontuacao: 26, resultado: 0, placar: 5, ALLWIN : 1, premio: "R$ 209" },
+  { nome: "Waleska", pontuacao: 24, resultado: 0, placar: 3, ALLWIN : 2, premio: "R$ 34,2" },
+  { nome: "Thaís", pontuacao: 24, resultado: 1, placar: 4, ALLWIN : 1, premio: "R$ 34,2" },
+  { nome: "Saulo", pontuacao: 24, resultado: 0, placar: 3, ALLWIN : 2, premio: "R$ 34,2" },
+  { nome: "Mauro Palmieri", pontuacao: 24, resultado: 1, placar: 4, ALLWIN : 1, premio: "R$ 34,2" },
+  { nome: "Paulo Vinícius R Silva", pontuacao: 24, resultado: 0, placar: 3, ALLWIN : 2, premio: "R$ 34,2" },
+  { nome: "Tyssia", pontuacao: 22, resultado: 1, placar: 5, ALLWIN : 0, premio: "R$ 0" },
+  { nome: "Diego", pontuacao: 22, resultado: 0, placar: 4, ALLWIN : 1, premio: "R$ 0" },
+  { nome: "Lorenzo", pontuacao: 22, resultado: 1, placar: 2, ALLWIN : 2, premio: "R$ 0" },
+  { nome: "Tamara", pontuacao: 20, resultado: 1, placar: 3, ALLWIN : 1, premio: "R$ 0" },
+  { nome: "Walter", pontuacao: 20, resultado: 1, placar: 3, ALLWIN : 1, premio: "R$ 0" },
+  { nome: "Ericelso", pontuacao: 20, resultado: 1, placar: 3, ALLWIN : 1, premio: "R$ 0" },
+  { nome: "José Bernardes Miranda", pontuacao: 18, resultado: 0, placar: 3, ALLWIN : 1, premio: "R$ 0" },
+  { nome: "Maria Cristiana", pontuacao: 18, resultado: 0, placar: 3, ALLWIN : 1, premio: "R$ 0" },
+  { nome: "Hiago", pontuacao: 16, resultado: 1, placar: 2, ALLWIN : 1, premio: "R$ 0" },
+  { nome: "Lincoln Peres", pontuacao: 16, resultado: 0, placar: 4, ALLWIN : 0, premio: "R$ 0" },
+  { nome: "Thiago mota", pontuacao: 16, resultado: 0, placar: 4, ALLWIN : 0, premio: "R$ 0" },
+  { nome: "Rene", pontuacao: 16, resultado: 2, placar: 3, ALLWIN : 0, premio: "R$ 0" },
+  { nome: "Jhow", pontuacao: 14, resultado: 1, placar: 3, ALLWIN : 0, premio: "R$ 0" }
 
 
 ];
@@ -121,7 +121,7 @@ ranking.forEach((p, i) => {
       <td data-label="Pontuação">${p.pontuacao}</td>
       <td data-label="Resultado">${p.resultado}</td>
       <td data-label="Placar">${p.placar}</td>
-      <td data-label="ALL WIN">${p.ALL WIN}</td>
+      <td data-label="ALLWIN">${p.ALLWIN}</td>
       <td data-label="Prêmio">${p.premio}</td>
     </tr>
   `;
