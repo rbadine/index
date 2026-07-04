@@ -61,8 +61,8 @@
       <th>Classificação</th>
       <th>Participante</th>
       <th>Pontuação</th>
-      <th>ResultadoouClassificado</th>
-      <th>Resultado-Classificado</th>
+      <th>Resultado</th>
+      <th>Placar</th>
       <th>ALLWIN</th>
       <th>Prêmio</th>
     </tr>
@@ -74,25 +74,25 @@
 const participantes = [
 
 
-    { nome: "Paulo Vinícius R Silva", pontuacao: 64, ResultadoouClassificado: 1, Resultado-Classificado: 8, ALLWIN : 5, premio: "R$ 209" },
-  { nome: "Thaís", pontuacao: 60, ResultadoouClassificado: 1, Resultado-Classificado: 10, ALLWIN : 3, premio: "R$ 42,75" },
-  { nome: "Saulo", pontuacao: 60, ResultadoouClassificado: 1, Resultado-Classificado: 10, ALLWIN : 3, premio: "R$ 42,75" },
-  { nome: "Lorenzo", pontuacao: 60, ResultadoouClassificado: 2, Resultado-Classificado: 8, ALLWIN : 4, premio: "R$ 42,75" },
-  { nome: "Mauro Palmieri", pontuacao: 60, ResultadoouClassificado: 2, Resultado-Classificado: 11, ALLWIN : 2, premio: "R$ 42,75" },
-  { nome: "Tamara", pontuacao: 58, ResultadoouClassificado: 2, Resultado-Classificado: 9, ALLWIN : 3, premio: "R$ 0" },
-  { nome: "Waleska", pontuacao: 58, ResultadoouClassificado: 1, Resultado-Classificado: 11, ALLWIN : 2, premio: "R$ 0" },
-  { nome: "José Bernardes Miranda", ResultadoouClassificado: 56, resultado: 1, Resultado-Classificado: 9, ALLWIN : 3, premio: "R$ 0" },
-  { nome: "Walter", pontuacao: 54, ResultadoouClassificado: 2, Resultado-Classificado: 8, ALLWIN : 3, premio: "R$ 0" },
-  { nome: "Diego", pontuacao: 54, ResultadoouClassificado: 1, Resultado-Classificado: 10, ALLWIN : 2, premio: "R$ 0" },
-  { nome: "Hiago", pontuacao: 52, ResultadoouClassificado: 1, Resultado-Classificado: 8, ALLWIN : 3, premio: "R$ 0" },
-  { nome: "Tyssia", pontuacao: 52, ResultadoouClassificado: 4, Resultado-Classificado: 11, ALLWIN : 0, premio: "R$ 0" },
-  { nome: "Ericelso", pontuacao: 52, ResultadoouClassificado: 2, Resultado-Classificado: 9, ALLWIN : 2, premio: "R$ 0" },
-  { nome: "Lincoln Peres", pontuacao: 50, ResultadoouClassificado: 1, Resultado-Classificado: 12, ALLWIN : 0, premio: "R$ 0" },
-  { nome: "Robson Francisco", pontuacao: 48, ResultadoouClassificado: 2, Resultado-Classificado: 8, ALLWIN : 2, premio: "R$ 0" },
-  { nome: "Thiago mota", pontuacao: 46, ResultadoouClassificado: 3, Resultado-Classificado: 7, ALLWIN : 2, premio: "R$ 0" },
-  { nome: "Rene", pontuacao: 46, ResultadoouClassificado: 4, Resultado-Classificado: 8, ALLWIN : 1, premio: "R$ 0" },
-  { nome: "Jhow", pontuacao: 42, ResultadoouClassificado: 4, Resultado-Classificado: 7, ALLWIN : 1, premio: "R$ 0" },
-  { nome: "Maria Cristiana", pontuacao: 36, ResultadoouClassificado: 3, Resultado-Classificado: 6, ALLWIN : 1, premio: "R$ 0" },
+    { nome: "Paulo Vinícius R Silva", pontuacao: 64, Resultado: 1, Placar: 8, ALLWIN : 5, premio: "R$ 209" },
+  { nome: "Thaís", pontuacao: 60, Resultado: 1, Placar: 10, ALLWIN : 3, premio: "R$ 42,75" },
+  { nome: "Saulo", pontuacao: 60, Resultado: 1, Placar: 10, ALLWIN : 3, premio: "R$ 42,75" },
+  { nome: "Lorenzo", pontuacao: 60, Resultado: 2, Placar: 8, ALLWIN : 4, premio: "R$ 42,75" },
+  { nome: "Mauro Palmieri", pontuacao: 60, Resultado: 2, Placar: 11, ALLWIN : 2, premio: "R$ 42,75" },
+  { nome: "Tamara", pontuacao: 58, Resultado: 2, Placar: 9, ALLWIN : 3, premio: "R$ 0" },
+  { nome: "Waleska", pontuacao: 58, Resultado: 1, Placar: 11, ALLWIN : 2, premio: "R$ 0" },
+  { nome: "José Bernardes Miranda", pontuacao: 56, Resultado: 1, Placar: 9, ALLWIN : 3, premio: "R$ 0" },
+  { nome: "Walter", pontuacao: 54, Resultado: 2, Placar: 8, ALLWIN : 3, premio: "R$ 0" },
+  { nome: "Diego", pontuacao: 54, Resultado: 1, Placar: 10, ALLWIN : 2, premio: "R$ 0" },
+  { nome: "Hiago", pontuacao: 52, Resultado: 1, Placar: 8, ALLWIN : 3, premio: "R$ 0" },
+  { nome: "Tyssia", pontuacao: 52, Resultado: 4, Placar: 11, ALLWIN : 0, premio: "R$ 0" },
+  { nome: "Ericelso", pontuacao: 52, Resultado: 2, Placar: 9, ALLWIN : 2, premio: "R$ 0" },
+  { nome: "Lincoln Peres", pontuacao: 50, Resultado: 1, Placar: 12, ALLWIN : 0, premio: "R$ 0" },
+  { nome: "Robson Francisco", pontuacao: 48, Resultado: 2, Placar: 8, ALLWIN : 2, premio: "R$ 0" },
+  { nome: "Thiago mota", pontuacao: 46, Resultado: 3, Placar: 7, ALLWIN : 2, premio: "R$ 0" },
+  { nome: "Rene", pontuacao: 46, Resultado: 4, Placar: 8, ALLWIN : 1, premio: "R$ 0" },
+  { nome: "Jhow", pontuacao: 42, Resultado: 4, Placar: 7, ALLWIN : 1, premio: "R$ 0" },
+  { nome: "Maria Cristiana", pontuacao: 36, Resultado: 3, Placar: 6, ALLWIN : 1, premio: "R$ 0" },
 
 
 ];
@@ -119,8 +119,8 @@ ranking.forEach((p, i) => {
       <td data-label="Classificação">${classificacao}</td>
       <td data-label="Participante">${p.nome}</td>
       <td data-label="Pontuação">${p.pontuacao}</td>
-      <td data-label="Resultado">${p.ResultadoouClassificado}</td>
-      <td data-label="Placar">${p.Resultado-Classificado}</td>
+      <td data-label="Resultado">${p.Resultado}</td>
+      <td data-label="Placar">${p.Placar}</td>
       <td data-label="ALLWIN">${p.ALLWIN}</td>
       <td data-label="Prêmio">${p.premio}</td>
     </tr>
