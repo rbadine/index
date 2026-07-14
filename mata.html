@@ -154,7 +154,7 @@
     function exportarExcel() {
       const nomePessoa = document.getElementById("nomePessoa").value || "Anônimo";
 
-      if (Object.keys(resultados).length < 4) {
+      if (Object.keys(resultados).length < 2) {
         alert("Você precisa informar todos os jogos antes de salvar!");
         return;
       }
