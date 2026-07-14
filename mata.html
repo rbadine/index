@@ -154,13 +154,8 @@
     function exportarExcel() {
       const nomePessoa = document.getElementById("nomePessoa").value || "Anônimo";
 
-      if (Object.keys(resultados).length < 2) {
+      if (Object.keys(resultados).length < 1) {
         alert("Você precisa informar todos os jogos antes de salvar!");
-        return;
-      }
-
-      if (!campeaoSelecionado) {
-        alert("Você precisa escolher o campeão antes de salvar!");
         return;
       }
 
