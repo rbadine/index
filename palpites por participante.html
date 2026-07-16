@@ -709,7 +709,7 @@ function mostrarPalpites(jogador) {
     const lista = document.createElement("ul");
     jogadores[jogador].forEach(p => {
       const item = document.createElement("li");
-      item.textContent = `${p.data}: ${p.time1} ${p.placar1} x ${p.placar2} ${p.time2} → ${p.resultado}`;
+      item.textContent = `${p.pontos}: ${p.time1} ${p.placar1} x ${p.placar2} ${p.time2} → ${p.resultado}`;
       lista.appendChild(item);
     });
     resultadoDiv.appendChild(lista);
