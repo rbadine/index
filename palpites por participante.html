@@ -707,16 +707,28 @@ function mostrarPalpites(jogador) {
   resultadoDiv.innerHTML = `<h3>Palpites de ${jogador}</h3>`;
   if (jogadores[jogador]) {
     const lista = document.createElement("ul");
+    let totalPontos = 0; // variável para acumular os pontos
+
     jogadores[jogador].forEach(p => {
       const item = document.createElement("li");
       item.textContent = `${p.pontos}: ${p.time1} ${p.placar1} x ${p.placar2} ${p.time2} → ${p.resultado}`;
       lista.appendChild(item);
+
+      // somar os pontos (convertendo para número)
+      totalPontos += parseInt(p.pontos, 10);
     });
+
     resultadoDiv.appendChild(lista);
+
+    // mostrar o total no final
+    const totalDiv = document.createElement("p");
+    totalDiv.style.fontWeight = "bold";
+    totalDiv.textContent = `Total de pontos: ${totalPontos}`;
+    resultadoDiv.appendChild(totalDiv);
+
   } else {
     resultadoDiv.innerHTML += "<p>Nenhum palpite registrado.</p>";
   }
-}
 
 // Mostrar todos os nomes ao clicar
 input.addEventListener("focus", () => {
