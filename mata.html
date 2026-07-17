@@ -87,21 +87,21 @@
       <input type="number" id="placarA1" min="0">
       <span>x</span>
       <input type="number" id="placarB1" min="0">
-      <span>Espanha</span>
+      <span>Inglaterra</span>
     </div>
-    <button onclick="definirClassificado(1, 'França', 'Espanha')">Definir Classificado</button>
+    <button onclick="definirClassificado(1, 'França', 'Inglaterra')">Definir 3º lugar</button>
     <div class="resultado" id="resultado1"></div>
   </div>
 
   <div class="jogo" id="jogo2">
     <div class="equipes">
-      <span>Inglaterra</span>
+      <span>Espanha</span>
       <input type="number" id="placarA2" min="0">
       <span>x</span>
       <input type="number" id="placarB2" min="0">
       <span>Argentina</span>
     </div>
-    <button onclick="definirClassificado(2, 'Inglaterra', 'Argentina')">Definir Classificado</button>
+    <button onclick="definirClassificado(2, 'Espanha', 'Argentina')">Definir Campeão</button>
     <div class="resultado" id="resultado2"></div>
   </div>
 
@@ -138,19 +138,8 @@
 
       document.getElementById("resultado" + jogo).innerText =
         `Placar: ${placarA} x ${placarB} → Classificado: ${vencedor}`;
-    }
-
-    function definirCampeao() {
-      const selecao = document.getElementById("campeao").value;
-      if (!selecao) {
-        alert("Por favor, escolha um campeão!");
-        return;
       }
-      campeaoSelecionado = selecao;
-      document.getElementById("resultadoFinal").innerText =
-        `🏆 Campeão da Copa: ${selecao}`;
-    }
-
+ 
     function exportarExcel() {
       const nomePessoa = document.getElementById("nomePessoa").value || "Anônimo";
 
@@ -183,7 +172,7 @@
       const ws = XLSX.utils.json_to_sheet(dados);
       const wb = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(wb, ws, "Palpites");
-      XLSX.writeFile(wb, `palpites_${nomePessoa}_Semifinal.xlsx`);
+      XLSX.writeFile(wb, `palpites_${nomePessoa}_Finais.xlsx`);
     }
   </script>
 
