@@ -100,7 +100,7 @@
 // Exemplo simplificado de palpites (substitua pelo JSON completo)
 const palpites = [
 { jogador : ""},
- { jogador: "Walter", pontos: "2", time1: "África do Sul", placar1: 1, time2: "Canadá", placar2: 1, resultado: "Canadá" },
+{ jogador: "Walter", pontos: "2", time1: "África do Sul", placar1: 1, time2: "Canadá", placar2: 1, resultado: "Canadá" },
  { jogador: "Walter", pontos: "6", time1: "Brasil", placar1: 2, time2: "Japão", placar2: 1, resultado: "Brasil" },
  { jogador: "Paulo Vinícius R Silva", pontos: "4", time1: "África do Sul", placar1: 1, time2: "Canadá", placar2: 2, resultado: "Canadá" },
  { jogador: "Paulo Vinícius R Silva", pontos: "4", time1: "Brasil", placar1: 3, time2: "Japão", placar2: 1, resultado: "Brasil" },
@@ -672,6 +672,7 @@ const palpites = [
  { jogador: "Robson Francisco", pontos: "0", time1: "Inglaterra", placar1: 2, time2: "Argentina", placar2: 2, resultado: "Inglaterra " },
  { jogador: "Rene", pontos: "0", time1: "França", placar1: 4, time2: "Espanha", placar2: 1, resultado: "França" },
  { jogador: "Rene", pontos: "2", time1: "Inglaterra", placar1: 1, time2: "Argentina", placar2: 1, resultado: "Argentina" },
+ 
 
   
 ];
@@ -707,20 +708,17 @@ function mostrarPalpites(jogador) {
   resultadoDiv.innerHTML = `<h3>Palpites de ${jogador}</h3>`;
   if (jogadores[jogador]) {
     const lista = document.createElement("ul");
-    let totalPontos = 0; // variável para acumular os pontos
+    let totalPontos = 0;
 
     jogadores[jogador].forEach(p => {
       const item = document.createElement("li");
       item.textContent = `${p.pontos}: ${p.time1} ${p.placar1} x ${p.placar2} ${p.time2} → ${p.resultado}`;
       lista.appendChild(item);
-
-      // somar os pontos (convertendo para número)
       totalPontos += parseInt(p.pontos, 10);
     });
 
     resultadoDiv.appendChild(lista);
 
-    // mostrar o total no final
     const totalDiv = document.createElement("p");
     totalDiv.style.fontWeight = "bold";
     totalDiv.textContent = `Total de pontos: ${totalPontos}`;
@@ -729,20 +727,19 @@ function mostrarPalpites(jogador) {
   } else {
     resultadoDiv.innerHTML += "<p>Nenhum palpite registrado.</p>";
   }
+}
 
-// Mostrar todos os nomes ao clicar
+// 🔹 Eventos fora da função
 input.addEventListener("focus", () => {
   mostrarNomes(Object.keys(jogadores));
 });
 
-// Filtrar conforme digita
 input.addEventListener("keyup", () => {
   const filtro = input.value.toLowerCase();
   const filtrados = Object.keys(jogadores).filter(nome => nome.toLowerCase().includes(filtro));
   mostrarNomes(filtrados);
 });
 
-// Esconder lista ao clicar fora
 document.addEventListener("click", (event) => {
   if (!input.contains(event.target) && !sugestoes.contains(event.target)) {
     sugestoes.innerHTML = '';
@@ -751,4 +748,3 @@ document.addEventListener("click", (event) => {
 </script>
 
 </body>
-</html>
